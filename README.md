@@ -1,2 +1,2 @@
-# HM_StarterKit
-HM_StarterKitのサンプルプログラム及び回路図などのテクニカルデータ
+# HM-StarterKit
+HM-StarterKitのサンプルプログラム及び回路図などのテクニカルデータ
