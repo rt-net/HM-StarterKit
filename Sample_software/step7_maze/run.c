@@ -73,7 +73,7 @@ void straight(float len, float acc, float max_sp, float end_sp){
 			}
 		}
 	}
-	//加速度とトルク入力を0にする
+	//加速度を0にする
 	accel = 0;
 	//現在距離を0にリセット
 	len_mouse = 0;

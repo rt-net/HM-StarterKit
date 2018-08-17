@@ -84,8 +84,6 @@ GLOBAL int			log_flag;				//ログ取得のタイミング用
 GLOBAL char			TURN_DIR;				//ターン方向フラグ
 
 //モータのデューティ決定用グローバル変数
-GLOBAL float			Truqe_r_con;				//フィードバック制御の右モータトルク		[m*N]
-GLOBAL float			Truqe_l_con;				//フィードバック制御の左モータトルク		[m*N]
 GLOBAL float			Duty_r;					//出力のデューティ比				[%]
 GLOBAL float			Duty_l;					//出力のデューティ比				[%]
 

@@ -11,8 +11,6 @@
 #define ENC_RES_HALF	(512)
 
 #define V_ref		3.8				//モータ制御の基準電圧
-#define MIN_TURN_TRUQE	100.0/1000000.0			//ターン時の最低トルク
-#define ST_TRUQE	100.0/1000000.0			//直線走行をする最低トルク
 
 //ログ用のパラメータ
 #define LOG_CNT		1000				//ログをとる個数。 1mmsで取得しているので、取得時間[s]はこの数の1000分の1
@@ -50,11 +48,11 @@
 #define SEARCH_ACCEL	(1.0)				//探索走行の加速度	[m/s^2]
 #define FAST_SPEED	(1.0)				//最短走行の速度	[m/s]
 #define FAST_ACCEL	(2.0)				//最短走行の加速度	[m/s^2]
-#define MIN_SPEED	(0.2)				//最低速度	[m/s]
+#define MIN_SPEED	(0.1)				//最低速度	[m/s]
 
 #define TURN_ACCEL	(PI*2)				//超信地旋回の加速度	[rad/s^2]
 #define	TURN_SPEED	(PI)				//超信地旋回の最高速度	[rad/s]
-#define TURN_MIN_SPEED	(PI/10.0)				//超信地旋回の最低速度	[rad/s]
+#define TURN_MIN_SPEED	(PI/10.0)			//超信地旋回の最低速度	[rad/s]
 
 #define WAIT_TIME	500				//各動作後の待機時間	[ms]
 

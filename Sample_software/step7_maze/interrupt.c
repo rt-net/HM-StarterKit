@@ -143,16 +143,16 @@ void int_cmt0(void)
 	V_r = V_l = 0.0;
 	if(run_mode == STRAIGHT_MODE || run_mode == TURN_MODE){
 	//直進時のフィードバック制御
-		//左右のトルクフィードバック
+		//左右モータのフィードバック
 		//速度に対するP制御
 		V_r += 1 * (tar_speed - speed) *SPEED_KP/1.0; //15目標値付近で発振
 		V_l += 1 * (tar_speed - speed) *SPEED_KP/1.0;
 		//速度に対するI制御
-		V_r += 1 * (I_tar_speed - I_speed) *SPEED_KD/1.0; //(0.4-0.3)*0.1 -> 0.01 
-		V_l += 1 * (I_tar_speed - I_speed) *SPEED_KD/1.0;
+		V_r += 1 * (I_tar_speed - I_speed) *SPEED_KI/1.0; //(0.4-0.3)*0.1 -> 0.01 
+		V_l += 1 * (I_tar_speed - I_speed) *SPEED_KI/1.0;
 		//速度に対するD制御
-		V_r -= 1 * (p_speed - speed) *SPEED_KI/1.0; //(0.4-0.3)*0.1 -> 0.01 
-		V_l -= 1 * (p_speed - speed) *SPEED_KI/1.0;
+		V_r -= 1 * (p_speed - speed) *SPEED_KD/1.0; //(0.4-0.3)*0.1 -> 0.01 
+		V_l -= 1 * (p_speed - speed) *SPEED_KD/1.0;
 
 		//角速度に対するP制御
 		V_r += 1 * (tar_ang_vel - ang_vel) *(OMEGA_KP/100.0);
