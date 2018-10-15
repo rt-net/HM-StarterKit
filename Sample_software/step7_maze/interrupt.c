@@ -397,7 +397,7 @@ void int_cmt1(void)		//センサ読み込み用り込み
 	S12AD.ADCSR.BIT.ADST=1;				//AD変換開始
 	while(S12AD.ADCSR.BIT.ADST);			//AD変換終了まで待つ
 	V_bat = (2.0*3.3*(float)(S12AD.ADDR9/4095.0) );
-	if(V_bat < 3.1){
+	if(V_bat < 3.5){
 		
 		//モータ止める
 		Duty_r = 0;
