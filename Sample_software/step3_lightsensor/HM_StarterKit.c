@@ -128,8 +128,8 @@ void main(void)
 		//センサの値を表示
 		SCI_printf("sensor_fr = %d\n\r",S12AD.ADDR6);
 		SCI_printf("sensor_r = %d\n\r",S12AD.ADDR2);
-		SCI_printf("sensor_fl = %d\n\r",S12AD.ADDR1);
-		SCI_printf("sensor_l = %d\n\r",S12AD.ADDR0);
+		SCI_printf("sensor_l = %d\n\r",S12AD.ADDR1);
+		SCI_printf("sensor_fl = %d\n\r",S12AD.ADDR0);
 		//バッテリー電圧のA/D変換
 		S12AD.ADANS0.WORD = 0x0200;	//A/D変換をAN006のみ許可する
 		S12AD.ADCSR.BIT.ADST = 1;	//A/D変換を開始
