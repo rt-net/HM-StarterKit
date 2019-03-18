@@ -18,33 +18,33 @@
 extern wait_ms(int wtime);
 
 /*****************************************************************************************
-ѓNѓЌѓbѓNђЭ’и
+г‚Їгѓ­гѓѓг‚ЇиЁ­е®љ
 
 *****************************************************************************************/
 void clock_init(void){
 
-	SYSTEM.PRCR.WORD = 0xa50b;		//ѓNѓЌѓbѓNѓ\Ѓ[ѓX‘I‘р‚М•ЫЊм‚М‰рЏњ
+	SYSTEM.PRCR.WORD = 0xa50b;		//г‚Їгѓ­гѓѓг‚Їг‚Ѕгѓјг‚№йЃёжЉћгЃ®дїќи­·гЃ®и§Јй™¤
 
-	SYSTEM.PLLCR.WORD = 0x0F00;		/* PLL ’ь”{Ѓ~16 “ь—Н1•ЄЋь (12.000MHz * 16 = 192MHz)*/
+	SYSTEM.PLLCR.WORD = 0x0F00;		/* PLL йЂ“еЂЌГ—16 е…ҐеЉ›1е€†е‘Ё (12.000MHz * 16 = 192MHz)*/
 	SYSTEM.PLLCR2.BYTE = 0x00;		/* PLL ENABLE */
 	
 	SYSTEM.PLLWTCR.BYTE     = 0x0F;		/* 4194304cycle(Default) */
 	
 	
-	// ICK   : 192/2 = 96MHz 		// ѓVѓXѓeѓЂѓNѓЌѓbѓN CPU DMAC DTC ROM RAM
-	// PCLKA : 192/2 = 96MHz 		// Ћь•Уѓ‚ѓWѓ…Ѓ[ѓ‹ѓNѓЌѓbѓNA ETHERCЃAEDMACЃADEU
-	// PCLKB : 192/4 = 48MHz 		// Ћь•Уѓ‚ѓWѓ…Ѓ[ѓ‹ѓNѓЌѓbѓNB Џг‹L€ИЉO PCLKB=PCLK
+	// ICK   : 192/2 = 96MHz 		// г‚·г‚№гѓ†гѓ г‚Їгѓ­гѓѓг‚Ї CPU DMAC DTC ROM RAM
+	// PCLKA : 192/2 = 96MHz 		// е‘Ёиѕєгѓўг‚ёгѓҐгѓјгѓ«г‚Їгѓ­гѓѓг‚ЇA ETHERCгЂЃEDMACгЂЃDEU
+	// PCLKB : 192/4 = 48MHz 		// е‘Ёиѕєгѓўг‚ёгѓҐгѓјгѓ«г‚Їгѓ­гѓѓг‚ЇB дёЉиЁд»Ґе¤– PCLKB=PCLK
 /*	
 	SYSTEM.SCKCR.BIT.FCK=0x02;		//FCLK MAX 50MHz  192/4
 	SYSTEM.SCKCR.BIT.ICK=0x01;		//ICLK MAX 100MHz 192/2
-	SYSTEM.SCKCR.BIT.PSTOP1=0x01;		//BCLK Џo—Н’вЋ~
-	SYSTEM.SCKCR.BIT.PSTOP0=0x01;		//SDCLK Џo—Н’вЋ~
-	SYSTEM.SCKCR.BIT.BCK=0x02;		//BCLK MAX 100MHz ICLK€И‰є‚Й‚·‚й•K—v‚Є‚ ‚й192/4
+	SYSTEM.SCKCR.BIT.PSTOP1=0x01;		//BCLK е‡єеЉ›еЃњж­ў
+	SYSTEM.SCKCR.BIT.PSTOP0=0x01;		//SDCLK е‡єеЉ›еЃњж­ў
+	SYSTEM.SCKCR.BIT.BCK=0x02;		//BCLK MAX 100MHz ICLKд»Ґдё‹гЃ«гЃ™г‚‹еї…и¦ЃгЃЊгЃ‚г‚‹192/4
 	SYSTEM.SCKCR.BIT.PCKA=0x01;		//PCLKA MAX 100MHz 192/2
 	SYSTEM.SCKCR.BIT.PCKB=0x02;		//PCLKB MAX 50MHz 192/4
-	//Џг‹L‚МђЭ’и‚Е‚Нђі‚µ‚­clockђЭ’и‚Є‚Е‚«‚И‚ў‚Ѕ‚Я‰є‹L‚М‚ж‚¤‚Й€кЉ‡‚ЕђЭ’и‚·‚й‚±‚Ж
+	//дёЉиЁгЃ®иЁ­е®љгЃ§гЃЇж­ЈгЃ—гЃЏclockиЁ­е®љгЃЊгЃ§гЃЌгЃЄгЃ„гЃџг‚Ѓдё‹иЁгЃ®г‚€гЃ†гЃ«дёЂж‹¬гЃ§иЁ­е®љгЃ™г‚‹гЃ“гЃЁ
 */
-	SYSTEM.SCKCR.LONG = 0x21C21211;		//FCK1/4 ICK1/2 BCLK’вЋ~ SDCLK’вЋ~ BCK1/4 PCLKA1/2 PCLKB1/4
+	SYSTEM.SCKCR.LONG = 0x21C21211;		//FCK1/4 ICK1/2 BCLKеЃњж­ў SDCLKеЃњж­ў BCK1/4 PCLKA1/2 PCLKB1/4
 /*
 	SYSTEM.SCKCR2.BIT.UCK=0x03;		//UCLK MAX 48MHz 192/4
 	SYSTEM.SCKCR2.BIT.IEBCK=0x02;		//IECLK MAX 50MHz 192/4
@@ -52,12 +52,12 @@ void clock_init(void){
 	SYSTEM.SCKCR2.WORD = 0x0032;		/* UCLK1/4 IEBCK1/4 */
 	SYSTEM.BCKCR.BYTE = 0x01;		/* BCLK = 1/2 */
 	
-	SYSTEM.SCKCR3.WORD = 0x0400;		//PLL‰сH‘I‘р
+	SYSTEM.SCKCR3.WORD = 0x0400;		//PLLе›ћи·ЇйЃёжЉћ
 	
 }
 
 /*****************************************************************************************
-CMT‚МђЭ’и
+CMTгЃ®иЁ­е®љ
 		
 *****************************************************************************************/
 void init_cmt(void)
@@ -68,138 +68,138 @@ void init_cmt(void)
 	MSTP(CMT2) = 0;
     	SYSTEM.PRCR.WORD = 0xA500;	
 	
-	//CMT0‚Нђ§ЊдЉ„‚иЌћ‚Э—pѓ^ѓCѓ}‚Ж‚µ‚ДЋg—p
+	//CMT0гЃЇе€¶еѕЎе‰Іг‚ЉиѕјгЃїз”Ёг‚їг‚¤гѓћгЃЁгЃ—гЃ¦дЅїз”Ё
 	CMT0.CMCR.BIT.CKS=1;	// PCLK/32 1.5MHz
-	CMT0.CMCR.BIT.CMIE=1;	//Љ„‚иЌћ‚Э‚р‹–‰В
-	CMT0.CMCNT=0;		//ѓJѓEѓ“ѓ^Ѓ[‚МѓNѓЉѓA
+	CMT0.CMCR.BIT.CMIE=1;	//е‰Іг‚ЉиѕјгЃїг‚’иЁ±еЏЇ
+	CMT0.CMCNT=0;		//г‚«г‚¦гѓіг‚їгѓјгЃ®г‚ЇгѓЄг‚ў
 	CMT0.CMCOR=1500-1;	//1kHz
 
-	IEN(CMT0,CMI0) = 1;	//Љ„‚иЌћ‚Э—v‹Ѓ‚р‹–‰В 
-	IPR(CMT0,CMI0) = 15;	//Љ„‚иЌћ‚Э—Dђж“x 15‚ЄЌЕЌ‚
-	IR(CMT0,CMI0)=0;	//Љ„‚иЌћ‚ЭѓXѓeЃ[ѓ^ѓtѓ‰ѓO‚рѓNѓЉѓA
+	IEN(CMT0,CMI0) = 1;	//е‰Іг‚ЉиѕјгЃїи¦Ѓж±‚г‚’иЁ±еЏЇ 
+	IPR(CMT0,CMI0) = 15;	//е‰Іг‚ЉиѕјгЃїе„Єе…€еє¦ 15гЃЊжњЂй«
+	IR(CMT0,CMI0)=0;	//е‰Іг‚ЉиѕјгЃїг‚№гѓ†гѓјг‚їгѓ•гѓ©г‚°г‚’г‚ЇгѓЄг‚ў
 	
-	//CMT1‚НѓZѓ“ѓTЃ[ђ§Њд—pѓ^ѓCѓ}‚Ж‚µ‚ДЋg—p
+	//CMT1гЃЇг‚»гѓіг‚µгѓје€¶еѕЎз”Ёг‚їг‚¤гѓћгЃЁгЃ—гЃ¦дЅїз”Ё
 	CMT1.CMCR.BIT.CKS=1;	// PCLK/32 1.5MHz
-	CMT1.CMCR.BIT.CMIE=1;	//Љ„‚иЌћ‚Э‚р‹–‰В
-	CMT1.CMCNT=0;		//ѓJѓEѓ“ѓ^Ѓ[‚МѓNѓЉѓA
+	CMT1.CMCR.BIT.CMIE=1;	//е‰Іг‚ЉиѕјгЃїг‚’иЁ±еЏЇ
+	CMT1.CMCNT=0;		//г‚«г‚¦гѓіг‚їгѓјгЃ®г‚ЇгѓЄг‚ў
 	CMT1.CMCOR=(1500/4)-1;	//4kHz
 
-	IEN(CMT1,CMI1) = 1;	//Љ„‚иЌћ‚Э—v‹Ѓ‚р‹–‰В 
-	IPR(CMT1,CMI1) = 14;	//Љ„‚иЌћ‚Э—Dђж“x‚рЋџ“_‚ЙђЭ’и
-	IR(CMT1,CMI1)=0;	//Љ„‚иЌћ‚ЭѓXѓeЃ[ѓ^ѓtѓ‰ѓO‚рѓNѓЉѓA
+	IEN(CMT1,CMI1) = 1;	//е‰Іг‚ЉиѕјгЃїи¦Ѓж±‚г‚’иЁ±еЏЇ 
+	IPR(CMT1,CMI1) = 14;	//е‰Іг‚ЉиѕјгЃїе„Єе…€еє¦г‚’ж¬Ўз‚№гЃ«иЁ­е®љ
+	IR(CMT1,CMI1)=0;	//е‰Іг‚ЉиѕјгЃїг‚№гѓ†гѓјг‚їгѓ•гѓ©г‚°г‚’г‚ЇгѓЄг‚ў
 
-	//CMT2‚НѓZѓ“ѓTЃ[ђ§Њд—pѓ^ѓCѓ}‚Ж‚µ‚ДЋg—p
+	//CMT2гЃЇг‚»гѓіг‚µгѓје€¶еѕЎз”Ёг‚їг‚¤гѓћгЃЁгЃ—гЃ¦дЅїз”Ё
 	CMT2.CMCR.BIT.CKS=1;	// PCLK/32 1.5MHz
-	CMT2.CMCR.BIT.CMIE=1;	//Љ„‚иЌћ‚Э‚р‹–‰В
-	CMT2.CMCNT=0;		//ѓJѓEѓ“ѓ^Ѓ[‚МѓNѓЉѓA
+	CMT2.CMCR.BIT.CMIE=1;	//е‰Іг‚ЉиѕјгЃїг‚’иЁ±еЏЇ
+	CMT2.CMCNT=0;		//г‚«г‚¦гѓіг‚їгѓјгЃ®г‚ЇгѓЄг‚ў
 	CMT2.CMCOR=(1500/2)-1;	//2kHz
 
-	IEN(CMT2,CMI2) = 1;	//Љ„‚иЌћ‚Э—v‹Ѓ‚р‹–‰В 
-	IPR(CMT2,CMI2) = 13;	//Љ„‚иЌћ‚Э—Dђж“x‚рЋџ“_‚ЙђЭ’и
-	IR(CMT2,CMI2)=0;	//Љ„‚иЌћ‚ЭѓXѓeЃ[ѓ^ѓtѓ‰ѓO‚рѓNѓЉѓA
+	IEN(CMT2,CMI2) = 1;	//е‰Іг‚ЉиѕјгЃїи¦Ѓж±‚г‚’иЁ±еЏЇ 
+	IPR(CMT2,CMI2) = 13;	//е‰Іг‚ЉиѕјгЃїе„Єе…€еє¦г‚’ж¬Ўз‚№гЃ«иЁ­е®љ
+	IR(CMT2,CMI2)=0;	//е‰Іг‚ЉиѕјгЃїг‚№гѓ†гѓјг‚їгѓ•гѓ©г‚°г‚’г‚ЇгѓЄг‚ў
 	
-	CMT.CMSTR0.BIT.STR0=1;	//ѓJѓEѓ“ѓgѓXѓ^Ѓ[ѓg
-	CMT.CMSTR0.BIT.STR1=1;	//ѓJѓEѓ“ѓgѓXѓ^Ѓ[ѓg
-	CMT.CMSTR1.BIT.STR2=1;	//ѓJѓEѓ“ѓgѓXѓ^Ѓ[ѓg
+	CMT.CMSTR0.BIT.STR0=1;	//г‚«г‚¦гѓігѓ€г‚№г‚їгѓјгѓ€
+	CMT.CMSTR0.BIT.STR1=1;	//г‚«г‚¦гѓігѓ€г‚№г‚їгѓјгѓ€
+	CMT.CMSTR1.BIT.STR2=1;	//г‚«г‚¦гѓігѓ€г‚№г‚їгѓјгѓ€
 	
 }
 
 /*****************************************************************************************
-I/OђЭ’и
-	LED‚МђЭ’и	
+I/OиЁ­е®љ
+	LEDгЃ®иЁ­е®љ	
 *****************************************************************************************/
 void io_init(void){
 	
-	//ѓuѓUЃ[ЉЦA
+	//гѓ–г‚¶гѓјй–ўйЂЈ
 	PORTB.PDR.BIT.B5 = 1;
 		
 	
-	//ђФЉOLED‚Мѓsѓ“ђЭ’и
-	PORTA.PDR.BIT.B3 = 1;	//PA3‚рЏo—Н—p‚ЙђЭ’и
-	PORT1.PDR.BIT.B5 = 1;	//P15‚рЏo—Н—p‚ЙђЭ’и
-	PORT1.PDR.BIT.B4 = 1;	//P14‚рЏo—Н—p‚ЙђЭ’и
-	PORT3.PDR.BIT.B1 = 1;	//P31‚рЏo—Н—p‚ЙђЭ’и
+	//иµ¤е¤–LEDгЃ®гѓ”гѓіиЁ­е®љ
+	PORTA.PDR.BIT.B3 = 1;	//PA3г‚’е‡єеЉ›з”ЁгЃ«иЁ­е®љ
+	PORT1.PDR.BIT.B5 = 1;	//P15г‚’е‡єеЉ›з”ЁгЃ«иЁ­е®љ
+	PORT1.PDR.BIT.B4 = 1;	//P14г‚’е‡єеЉ›з”ЁгЃ«иЁ­е®љ
+	PORT3.PDR.BIT.B1 = 1;	//P31г‚’е‡єеЉ›з”ЁгЃ«иЁ­е®љ
 }
 
 
 /*****************************************************************************************
-A/DC‚МђЭ’и
-	ЊхѓZѓ“ѓT‚ЖѓoѓbѓeѓЉ“d€і
+A/DCгЃ®иЁ­е®љ
+	е…‰г‚»гѓіг‚µгЃЁгѓђгѓѓгѓ†гѓЄй›»ењ§
 *****************************************************************************************/
 void sensor_init(void){
 
-	//A/D•ПЉ·—p‚Мѓsѓ“ђЭ’и
+	//A/Dе¤‰жЏ›з”ЁгЃ®гѓ”гѓіиЁ­е®љ
 	SYSTEM.PRCR.WORD = 0xA502;
 	MSTP_S12AD = 0;
 	SYSTEM.PRCR.WORD = 0xA500;
 	
-	//A/Dѓ|Ѓ[ѓg‚МPMRђЭ’и
-	PORT4.PMR.BIT.B6=1;	//P46‚рЋь•У‹@Љн‚Ж‚µ‚ДЋg—p
-	PORT4.PMR.BIT.B2=1;	//P42‚рЋь•У‹@Љн‚Ж‚µ‚ДЋg—p
-	PORT4.PMR.BIT.B1=1;	//P41‚рЋь•У‹@Љн‚Ж‚µ‚ДЋg—p
-	PORT4.PMR.BIT.B0=1;	//P40‚рЋь•У‹@Љн‚Ж‚µ‚ДЋg—p
-	PORTE.PMR.BIT.B7=1;	//PE7‚рЋь•У‹@Љн‚Ж‚µ‚ДЋg—p
-	//A/Dѓ|Ѓ[ѓg‚МPFSђЭ’и
-	MPC.PWPR.BYTE=0x00;	//ѓvѓЌѓeѓNѓg‰рЏњ
-	MPC.PWPR.BYTE=0x40;	//ѓvѓЌѓeѓNѓg‰рЏњ
-	MPC.P46PFS.BIT.ASEL=1;	//A/D SEN_FR	AN006‚рЋg—p
-	MPC.P42PFS.BIT.ASEL=1;	//A/D SEN_R 	AN002‚рЋg—p
-	MPC.P41PFS.BIT.ASEL=1;	//A/D SEN_FR	AN001‚рЋg—p
-	MPC.P40PFS.BIT.ASEL=1;	//A/D SEN_R 	AN000‚рЋg—p
-	MPC.PWPR.BYTE=0x80;	//ѓvѓЌѓeѓNѓgЌм“®
+	//A/Dгѓќгѓјгѓ€гЃ®PMRиЁ­е®љ
+	PORT4.PMR.BIT.B6=1;	//P46г‚’е‘Ёиѕєж©џе™ЁгЃЁгЃ—гЃ¦дЅїз”Ё
+	PORT4.PMR.BIT.B2=1;	//P42г‚’е‘Ёиѕєж©џе™ЁгЃЁгЃ—гЃ¦дЅїз”Ё
+	PORT4.PMR.BIT.B1=1;	//P41г‚’е‘Ёиѕєж©џе™ЁгЃЁгЃ—гЃ¦дЅїз”Ё
+	PORT4.PMR.BIT.B0=1;	//P40г‚’е‘Ёиѕєж©џе™ЁгЃЁгЃ—гЃ¦дЅїз”Ё
+	PORTE.PMR.BIT.B7=1;	//PE7г‚’е‘Ёиѕєж©џе™ЁгЃЁгЃ—гЃ¦дЅїз”Ё
+	//A/Dгѓќгѓјгѓ€гЃ®PFSиЁ­е®љ
+	MPC.PWPR.BYTE=0x00;	//гѓ—гѓ­гѓ†г‚Їгѓ€и§Јй™¤
+	MPC.PWPR.BYTE=0x40;	//гѓ—гѓ­гѓ†г‚Їгѓ€и§Јй™¤
+	MPC.P46PFS.BIT.ASEL=1;	//A/D SEN_FR	AN006г‚’дЅїз”Ё
+	MPC.P42PFS.BIT.ASEL=1;	//A/D SEN_R 	AN002г‚’дЅїз”Ё
+	MPC.P41PFS.BIT.ASEL=1;	//A/D SEN_FR	AN001г‚’дЅїз”Ё
+	MPC.P40PFS.BIT.ASEL=1;	//A/D SEN_R 	AN000г‚’дЅїз”Ё
+	MPC.PWPR.BYTE=0x80;	//гѓ—гѓ­гѓ†г‚Їгѓ€дЅње‹•
 	
-	//A/D•ПЉ·(ѓfѓtѓHѓ‹ѓg‚ЕѓVѓ“ѓOѓ‹ѓ‚Ѓ[ѓh)
-	//S12AD.ADCSR.BYTE = 0x0c;	//A/D•ПЉ·ѓNѓЌѓbѓN‚НPCLKB(48M[ha])
-	S12AD.ADCSR.BIT.CKS = 3;	//A/D•ПЉ·‚МѓNѓЌѓbѓN‚рPCLK‚М1•ЄЋь(48M[Hz])‚ЙђЭ’и
-	S12AD.ADANS0.WORD = 0x0047;	//A/D•ПЉ·‚рAN006‚М‚Э‹–‰В‚·‚й
-	S12AD.ADCSR.BIT.ADCS = 0;	//ѓVѓ“ѓOѓ‹ѓXѓLѓѓѓ“ѓ‚Ѓ[ѓh‚ЙђЭ’и
+	//A/Dе¤‰жЏ›(гѓ‡гѓ•г‚©гѓ«гѓ€гЃ§г‚·гѓіг‚°гѓ«гѓўгѓјгѓ‰)
+	//S12AD.ADCSR.BYTE = 0x0c;	//A/Dе¤‰жЏ›г‚Їгѓ­гѓѓг‚ЇгЃЇPCLKB(48M[ha])
+	S12AD.ADCSR.BIT.CKS = 3;	//A/Dе¤‰жЏ›гЃ®г‚Їгѓ­гѓѓг‚Їг‚’PCLKгЃ®1е€†е‘Ё(48M[Hz])гЃ«иЁ­е®љ
+	S12AD.ADANS0.WORD = 0x0047;	//A/Dе¤‰жЏ›г‚’AN006гЃ®гЃїиЁ±еЏЇгЃ™г‚‹
+	S12AD.ADCSR.BIT.ADCS = 0;	//г‚·гѓіг‚°гѓ«г‚№г‚­гѓЈгѓігѓўгѓјгѓ‰гЃ«иЁ­е®љ
 }
 
 /*****************************************************************************************
-ѓ‚Ѓ[ѓ^‚МђЭ’и
-	Ќ¶‰Eѓ‚Ѓ[ѓ^
+гѓўгѓјг‚їгЃ®иЁ­е®љ
+	е·¦еЏігѓўгѓјг‚ї
 *****************************************************************************************/
 void motor_init(void){
 	
-	//ѓ‚Ѓ[ѓ^Њnѓsѓ“ђЭ’и
+	//гѓўгѓјг‚їзі»гѓ”гѓіиЁ­е®љ
 	//MOT_POWER
 	PORTC.PDR.BIT.B6 = IO_OUT;//motor SLEEP (STBY)
 	//MOT_CWCCW
-	PORTC.PDR.BIT.B5 = IO_OUT;//Rmotor PH (ЋАЌЫ‚НЌ¶)
-	PORTB.PDR.BIT.B3 = IO_OUT;//Rmotor EN (ЋАЌЫ‚НЌ¶)
-	PORTC.PDR.BIT.B4 = IO_OUT;//Lmotor PH (ЋАЌЫ‚Н‰E)
-	PORTB.PDR.BIT.B1 = IO_OUT;//Lmotor EN (ЋАЌЫ‚Н‰E)
+	PORTC.PDR.BIT.B5 = IO_OUT;//Rmotor PH (е®џйљ›гЃЇе·¦)
+	PORTB.PDR.BIT.B3 = IO_OUT;//Rmotor EN (е®џйљ›гЃЇе·¦)
+	PORTC.PDR.BIT.B4 = IO_OUT;//Lmotor PH (е®џйљ›гЃЇеЏі)
+	PORTB.PDR.BIT.B1 = IO_OUT;//Lmotor EN (е®џйљ›гЃЇеЏі)
 	
-	//‹@”\ѓsѓ“ђЭ’и	
+	//ж©џиѓЅгѓ”гѓіиЁ­е®љ	
 	MPC.PWPR.BIT.B0WI=0;
 	MPC.PWPR.BIT.PFSWE=1;
 	MPC.PB1PFS.BIT.PSEL=1;	//PWM R MTIOC0C
 	MPC.PB3PFS.BIT.PSEL=1;	//PWM L MTIOC0A
 	MPC.PWPR.BYTE=0x80;
 	
-	//MTU‚МѓCѓjѓVѓѓѓ‰ѓCѓY
+	//MTUгЃ®г‚¤гѓ‹г‚·гѓЈгѓ©г‚¤г‚є
 	SYSTEM.PRCR.WORD = 0xA502;
-	MSTP(MTU) = 0;//MTUѓ‚ѓWѓ…Ѓ[ѓ‹ON
+	MSTP(MTU) = 0;//MTUгѓўг‚ёгѓҐгѓјгѓ«ON
 	SYSTEM.PRCR.WORD = 0xA500;	
 	
-	//ѓsѓ“‚в‹@”\ђЭ’иЋћ‚Й‚Нѓ^ѓCѓ}ѓXѓgѓbѓv
-	MTU.TSTR.BYTE=0;	//ѓ^ѓCѓ}“®ЌмѓXѓgѓbѓv
+	//гѓ”гѓіг‚„ж©џиѓЅиЁ­е®љж™‚гЃ«гЃЇг‚їг‚¤гѓћг‚№гѓ€гѓѓгѓ—
+	MTU.TSTR.BYTE=0;	//г‚їг‚¤гѓће‹•дЅњг‚№гѓ€гѓѓгѓ—
 	
-	//Ќ¶‰Eѓ‚Ѓ[ѓ^—pMTU0 PWM2 Ћћ’иђ”ѓС=L/R=17uH/(1.07+0.5+0.3)=110kHz
+	//е·¦еЏігѓўгѓјг‚їз”ЁMTU0 PWM2 ж™‚е®љж•°П„=L/R=17uH/(1.07+0.5+0.3)=110kHz
 	MTU0.TCR.BIT.TPSC=0;	//PCLK/1 48MHz
-	MTU0.TCR.BIT.CCLR=6;	//PWM TGRD‚МѓRѓ“ѓyѓAѓ}ѓbѓ`‚ЕTCNTѓNѓЉѓA
-	MTU0.TIORH.BIT.IOA=5;	//Џ‰ЉъЏo—Н0ѓRѓ“ѓyѓAѓ}ѓbѓ`0Џo—Н
-	MTU0.TIORL.BIT.IOC=5;	//Џ‰ЉъЏo—Н0ѓRѓ“ѓyѓAѓ}ѓbѓ`0Џo—Н
-	MTU0.TIORL.BIT.IOD=2;	//Џ‰ЉъЏo—Н0ѓRѓ“ѓyѓAѓ}ѓbѓ`1Џo—Н
-	MTU0.TGRA = 0;		//4€И‰є‚Н“®Ќм‚µ‚И‚ў
+	MTU0.TCR.BIT.CCLR=6;	//PWM TGRDгЃ®г‚ігѓігѓљг‚ўгѓћгѓѓгѓЃгЃ§TCNTг‚ЇгѓЄг‚ў
+	MTU0.TIORH.BIT.IOA=5;	//е€ќжњџе‡єеЉ›0г‚ігѓігѓљг‚ўгѓћгѓѓгѓЃ0е‡єеЉ›
+	MTU0.TIORL.BIT.IOC=5;	//е€ќжњџе‡єеЉ›0г‚ігѓігѓљг‚ўгѓћгѓѓгѓЃ0е‡єеЉ›
+	MTU0.TIORL.BIT.IOD=2;	//е€ќжњџе‡єеЉ›0г‚ігѓігѓљг‚ўгѓћгѓѓгѓЃ1е‡єеЉ›
+	MTU0.TGRA = 0;		//4д»Ґдё‹гЃЇе‹•дЅњгЃ—гЃЄгЃ„
 	MTU0.TGRC = 0;
-	MTU0.TGRD = 240;	//ЋьЉъ 200kHz
+	MTU0.TGRD = 240;	//е‘Ёжњџ 200kHz
 	MTU0.TMDR.BIT.MD=3;	//PWM2
 	
-	PORTB.PMR.BIT.B3=1;	//‰EPWM
-	PORTB.PMR.BIT.B1=1;	//Ќ¶PWM
-	MTU0.TGRA = 0;		//Ќ¶
-	MTU0.TGRC = 0;		//‰E
+	PORTB.PMR.BIT.B3=1;	//еЏіPWM
+	PORTB.PMR.BIT.B1=1;	//е·¦PWM
+	MTU0.TGRA = 0;		//е·¦
+	MTU0.TGRC = 0;		//еЏі
 	MTU.TSTR.BIT.CST0 =1; 
 	
 	MOT_POWER_OFF;
@@ -208,32 +208,32 @@ void motor_init(void){
 }
 
 /*****************************************************************************************
-ЊхѓZѓ“ѓTЃ[Њn‚Мѓpѓ‰ѓЃЃ[ѓ^Џ‰Љъ‰»
-	ѓЉѓtѓ@ѓЊѓ“ѓX‚Ж‚©•З‚Ми‡’l‚Ж‚©
+е…‰г‚»гѓіг‚µгѓјзі»гЃ®гѓ‘гѓ©гѓЎгѓјг‚їе€ќжњџеЊ–
+	гѓЄгѓ•г‚Ўгѓ¬гѓіг‚№гЃЁгЃ‹еЈЃгЃ®й–ѕеЂ¤гЃЁгЃ‹
 *****************************************************************************************/
 void init_parameters(void)
 {
 			
-	sen_r.ref = REF_SEN_R;				//‰EѓZѓ“ѓT‚МѓЉѓtѓ@ѓЊѓ“ѓX’l‚рЏ‰Љъ‰»
-	sen_l.ref = REF_SEN_L;				//Ќ¶ѓZѓ“ѓT‚МѓЉѓtѓ@ѓЊѓ“ѓX’l‚рЏ‰Љъ‰»
+	sen_r.ref = REF_SEN_R;				//еЏіг‚»гѓіг‚µгЃ®гѓЄгѓ•г‚Ўгѓ¬гѓіг‚№еЂ¤г‚’е€ќжњџеЊ–
+	sen_l.ref = REF_SEN_L;				//е·¦г‚»гѓіг‚µгЃ®гѓЄгѓ•г‚Ўгѓ¬гѓіг‚№еЂ¤г‚’е€ќжњџеЊ–
 	
-	sen_r.th_wall = TH_SEN_R;			//‰EѓZѓ“ѓT‚М•З—L–і”»’f‚Ми‡’l‚рЏ‰Љъ‰»
-	sen_l.th_wall = TH_SEN_L;			//Ќ¶ѓZѓ“ѓT‚М•З—L–і”»’f‚Ми‡’l‚рЏ‰Љъ‰»
+	sen_r.th_wall = TH_SEN_R;			//еЏіг‚»гѓіг‚µгЃ®еЈЃжњ‰з„Ўе€¤ж–­гЃ®й–ѕеЂ¤г‚’е€ќжњџеЊ–
+	sen_l.th_wall = TH_SEN_L;			//е·¦г‚»гѓіг‚µгЃ®еЈЃжњ‰з„Ўе€¤ж–­гЃ®й–ѕеЂ¤г‚’е€ќжњџеЊ–
 	
-	sen_fr.th_wall = TH_SEN_FR;			//‰E‘OѓZѓ“ѓT‚М•З—L–і”»’f‚Ми‡’l‚рЏ‰Љъ‰»
-	sen_fl.th_wall = TH_SEN_FL;			//Ќ¶‘OѓZѓ“ѓT‚М•З—L–і”»’f‚Ми‡’l‚рЏ‰Љъ‰»
+	sen_fr.th_wall = TH_SEN_FR;			//еЏіе‰Ќг‚»гѓіг‚µгЃ®еЈЃжњ‰з„Ўе€¤ж–­гЃ®й–ѕеЂ¤г‚’е€ќжњџеЊ–
+	sen_fl.th_wall = TH_SEN_FL;			//е·¦е‰Ќг‚»гѓіг‚µгЃ®еЈЃжњ‰з„Ўе€¤ж–­гЃ®й–ѕеЂ¤г‚’е€ќжњџеЊ–
 	
-	sen_r.th_control = CONTH_SEN_R;			//‰EѓZѓ“ѓT‚М•Зђ§Њд‚©‚Ї‚й‚©”Ы‚©‚Ми‡’l‚рЏ‰Љъ‰»
-	sen_l.th_control = CONTH_SEN_L;			//Ќ¶ѓZѓ“ѓT‚М•Зђ§Њд‚©‚Ї‚й‚©”Ы‚©‚Ми‡’l‚рЏ‰Љъ‰»
+	sen_r.th_control = CONTH_SEN_R;			//еЏіг‚»гѓіг‚µгЃ®еЈЃе€¶еѕЎгЃ‹гЃ‘г‚‹гЃ‹еђ¦гЃ‹гЃ®й–ѕеЂ¤г‚’е€ќжњџеЊ–
+	sen_l.th_control = CONTH_SEN_L;			//е·¦г‚»гѓіг‚µгЃ®еЈЃе€¶еѕЎгЃ‹гЃ‘г‚‹гЃ‹еђ¦гЃ‹гЃ®й–ѕеЂ¤г‚’е€ќжњџеЊ–
 	
-	con_wall.kp = CON_WALL_KP/10000.0;			//•З”д—бђ§Њд‚М”д—б’иђ”‚рЏ‰Љъ‰»
+	con_wall.kp = CON_WALL_KP/10000.0;			//еЈЃжЇ”дѕ‹е€¶еѕЎгЃ®жЇ”дѕ‹е®љж•°г‚’е€ќжњџеЊ–
 }
 
 /*****************************************************************************************
-–АHЏо•с‚МЏ‰Љъ‰»
+иї·и·Їжѓ…е ±гЃ®е€ќжњџеЊ–
 
 *****************************************************************************************/
-void init_maze(void)	//–АHЏо•с‚МЏ‰Љъ‰»
+void init_maze(void)	//иї·и·Їжѓ…е ±гЃ®е€ќжњџеЊ–
 {
 	int i,j;
 	
@@ -241,36 +241,36 @@ void init_maze(void)	//–АHЏо•с‚МЏ‰Љъ‰»
 	{
 		for(j = 0; j < MAZESIZE_Y; j++)
 		{
-			wall[i][j].north = wall[i][j].east = wall[i][j].south = wall[i][j].west = UNKNOWN;	//–АH‚М‘S‘М‚Є‚н‚©‚з‚И‚ўЋ–‚рђЭ’и‚·‚й
+			wall[i][j].north = wall[i][j].east = wall[i][j].south = wall[i][j].west = UNKNOWN;	//иї·и·ЇгЃ®е…ЁдЅ“гЃЊг‚ЏгЃ‹г‚‰гЃЄгЃ„дє‹г‚’иЁ­е®љгЃ™г‚‹
 		}
 	}
 	
 	for(i = 0; i < MAZESIZE_X; i++)
 	{
-		wall[i][0].south = WALL;		//Ћl•ы‚М•З‚р’З‰Б‚·‚й(“м)
-		wall[i][MAZESIZE_Y-1].north = WALL;	//Ћl•ы‚М•З‚р’З‰Б‚·‚й(–k)
+		wall[i][0].south = WALL;		//е››ж–№гЃ®еЈЃг‚’иїЅеЉ гЃ™г‚‹(еЌ—)
+		wall[i][MAZESIZE_Y-1].north = WALL;	//е››ж–№гЃ®еЈЃг‚’иїЅеЉ гЃ™г‚‹(еЊ—)
 	}
 	
 	for(j = 0; j < MAZESIZE_Y; j++)
 	{
-		wall[0][i].west = WALL;			//Ћl•ы‚М•З‚р’З‰Б‚·‚й(ђј)
-		wall[MAZESIZE_X-1][i].east = WALL;	//Ћl•ы‚М•З‚р’З‰Б‚·‚й(“Њ)
+		wall[0][j].west = WALL;			//е››ж–№гЃ®еЈЃг‚’иїЅеЉ гЃ™г‚‹(иҐї)
+		wall[MAZESIZE_X-1][j].east = WALL;	//е››ж–№гЃ®еЈЃг‚’иїЅеЉ гЃ™г‚‹(жќ±)
 	}
 	
-	wall[0][0].east = wall[1][0].west = WALL;	//ѓXѓ^Ѓ[ѓg’n“_‚М‰E‚М•З‚р’З‰Б‚·‚й
+	wall[0][0].east = wall[1][0].west = WALL;	//г‚№г‚їгѓјгѓ€ењ°з‚№гЃ®еЏігЃ®еЈЃг‚’иїЅеЉ гЃ™г‚‹
 	
 }
 
 
 /*****************************************************************************************
-ѓWѓѓѓCѓЌ‚МѓЉѓtѓ@ѓЊѓ“ѓXЋж“ѕ
+г‚ёгѓЈг‚¤гѓ­гЃ®гѓЄгѓ•г‚Ўгѓ¬гѓіг‚№еЏ–еѕ—
 
 *****************************************************************************************/
 void gyro_get_ref(void){
 	long i = 0;
 	float gyro_ref_temp = 0;
 	gyro_ref = 0;
-	//ѓWѓѓѓCѓЌ‚МѓЉѓtѓ@ѓЊѓ“ѓXЋж“ѕ
+	//г‚ёгѓЈг‚¤гѓ­гЃ®гѓЄгѓ•г‚Ўгѓ¬гѓіг‚№еЏ–еѕ—
 	for(i = 0; i < 2500; i++){
 		gyro_ref_temp += (float)gyro_x_new;
 		wait_ms(1);
@@ -281,7 +281,7 @@ void gyro_get_ref(void){
 }
 
 /*****************************************************************************************
-‘S‚Д‚М‹@”\‚МѓCѓjѓVѓѓѓ‰ѓCѓY
+е…ЁгЃ¦гЃ®ж©џиѓЅгЃ®г‚¤гѓ‹г‚·гѓЈгѓ©г‚¤г‚є
 	
 *****************************************************************************************/
 void init_all(void){
@@ -300,40 +300,40 @@ void init_all(void){
 	MOT_POWER_OFF;
 	init_parameters();
 	init_maze();
-	//Encoder‚МЏ‰Љъ‰»
+	//EncoderгЃ®е€ќжњџеЊ–
 	/*
-	RSPI0.SPCMD0.BIT.SSLA = 	0x00;	//SSLђMЌ†ѓAѓTЃ[ѓgђЭ’и(SSL0‚рЋg‚¤)
+	RSPI0.SPCMD0.BIT.SSLA = 	0x00;	//SSLдїЎеЏ·г‚ўг‚µгѓјгѓ€иЁ­е®љ(SSL0г‚’дЅїгЃ†)
 	preprocess_spi_enc(0x7E40);
 	for(i = 0; i < 100*1000*10; i++);
 	preprocess_spi_enc(0x5040);
 	for(i = 0; i < 100*1000*10; i++);
-	RSPI0.SPCMD0.BIT.SSLA = 	0x02;	//SSLђMЌ†ѓAѓTЃ[ѓgђЭ’и(SSL2‚рЋg‚¤)	preprocess_spi_enc(0x7E40);
+	RSPI0.SPCMD0.BIT.SSLA = 	0x02;	//SSLдїЎеЏ·г‚ўг‚µгѓјгѓ€иЁ­е®љ(SSL2г‚’дЅїгЃ†)	preprocess_spi_enc(0x7E40);
 	for(i = 0; i < 100*1000*10; i++);
 	preprocess_spi_enc(0x5040);
 	for(i = 0; i < 100*1000*10; i++);
 	*/
-	//GyroЏ‰ЉъђЭ’и
-	preprocess_spi_gyro_2byte(0x0681);		//ѓWѓѓѓCѓЌѓЉѓZѓbѓg
+	//Gyroе€ќжњџиЁ­е®љ
+	preprocess_spi_gyro_2byte(0x0681);		//г‚ёгѓЈг‚¤гѓ­гѓЄг‚»гѓѓгѓ€
 	for(i = 0; i < 100*1000*10; i++);
 	preprocess_spi_gyro_2byte(0x0601);		//Low Power Mode OFF
 	for(i = 0; i < 100*1000*10; i++);
 
-	//ѓWѓѓѓCѓЌ‚МђЭ’и
-	preprocess_spi_gyro_2byte(0x7F20);		//User Bank2‚Й•ПЌX
+	//г‚ёгѓЈг‚¤гѓ­гЃ®иЁ­е®љ
+	preprocess_spi_gyro_2byte(0x7F20);		//User Bank2гЃ«е¤‰ж›ґ
 	for(i = 0; i < 100*1000*10; i++);
-	preprocess_spi_gyro_2byte(0x0107);		//Range ‚рЌЕ‘е2000dps‚Ц•ПЌX
+	preprocess_spi_gyro_2byte(0x0107);		//Range г‚’жњЂе¤§2000dpsгЃёе¤‰ж›ґ
 	for(i = 0; i < 100*1000*10; i++);
-	preprocess_spi_gyro_2byte(0x7F00);		//User Bank0‚Й•ПЌX
+	preprocess_spi_gyro_2byte(0x7F00);		//User Bank0гЃ«е¤‰ж›ґ
 	for(i = 0; i < 100*1000*10; i++);
 
-	preprocess_spi_gyro_2byte(0x0621);		//ѓWѓѓѓCѓЌѓXѓ^Ѓ[ѓg
-	//•Пђ”Џ‰Љъ‰»
+	preprocess_spi_gyro_2byte(0x0621);		//г‚ёгѓЈг‚¤гѓ­г‚№г‚їгѓјгѓ€
+	//е¤‰ж•°е€ќжњџеЊ–
 	timer = 0;
 	
-	//ѓRѓ“ѓyѓAѓ}ѓbѓ`ѓ^ѓCѓ}ЉJЋn
+	//г‚ігѓігѓљг‚ўгѓћгѓѓгѓЃг‚їг‚¤гѓћй–‹е§‹
 	init_cmt();	
 
-	//E2ѓtѓ‰ѓbѓVѓ…‚МЏ‰Љъ‰»
+	//E2гѓ•гѓ©гѓѓг‚·гѓҐгЃ®е€ќжњџеЊ–
 	hw_dflash_init();
 
 	
