@@ -211,7 +211,7 @@ void adjust(void)
 				//センサーの前に手をかざしてスタート
 				if(sen_fr.value + sen_fl.value + sen_r.value + sen_l.value > SEN_DECISION * 4){
 					BEEP();
-					SCI_printf("time[msec],len_mouse[mm],tar_speed[mm/s],speed[mm/s],Duty_R[%],Duty_L[%],V_battery[mV],tar_degree[deg],degree[deg],tar_ang_vel[rad/s],ang_vel[rad/s],I_tar_ang_vel[rad],I_ang_vel[rad],ang_acc[rad/ss]\n\r");
+					SCI_printf("time[msec],len_mouse[mm],tar_speed[mm/s],speed[mm/s],Duty_R[%],Duty_L[%],V_battery[mV],tar_degree[deg*10],degree[deg*10],tar_ang_vel[1000*rad/s],ang_vel[1000*rad/s],I_tar_ang_vel[rad],I_ang_vel[rad],ang_acc[1000*rad/ss]\n\r");
 					for(i = 0; i < LOG_CNT; i++){
 						
 						SCI_printf("%d,",i);//time[msec]
