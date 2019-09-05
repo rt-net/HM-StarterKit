@@ -38,7 +38,7 @@ void int_cmt0(void)
 		
 		//角加速度更新
 		tar_ang_vel += ang_acc/1000.0;	//目標角速度を設定加速度で更新
-		tar_degree  += (tar_ang_vel*180.0/PI);
+		tar_degree  += (tar_ang_vel*180.0/PI)/1000.0;
 
 		
 		//左回転の場合
@@ -423,12 +423,12 @@ void int_cmt1(void)		//センサ読み込み用り込み
 			log[3][log_timer/4] = (int)(100*Duty_r);
 			log[4][log_timer/4] = (int)(100*Duty_l);
 			log[5][log_timer/4] = (int)(1000*V_bat);
-			log[6][log_timer/4] = (int)(tar_degree);
-			log[7][log_timer/4] = (int)(degree);
-			log[8][log_timer/4] = (int)(tar_ang_vel);
-			log[9][log_timer/4] = (int)(ang_vel);
+			log[6][log_timer/4] = (int)(tar_degree*10);
+			log[7][log_timer/4] = (int)(degree*10);
+			log[8][log_timer/4] = (int)(tar_ang_vel*1000);
+			log[9][log_timer/4] = (int)(ang_vel*1000);
 			log[10][log_timer/4] = (int)(I_tar_ang_vel);
-			log[11][log_timer/4] = (int)(ang_acc);
+			log[11][log_timer/4] = (int)(ang_acc*1000);
 		}
 	}	
 	

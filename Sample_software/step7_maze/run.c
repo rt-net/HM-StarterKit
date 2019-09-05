@@ -107,13 +107,13 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir){
 		ang_acc = ang_accel;			//Šp‰Á‘¬“x‚ðÝ’è
 		max_ang_vel = max_ang_velocity;
 		max_degree = deg;
-		while( (max_degree - (degree - local_degree))*PI/180.0 > (tar_ang_vel*tar_ang_vel/(2.0 * ang_acc))/1000.0);
+		while( (max_degree - (degree - local_degree))*PI/180.0 > (tar_ang_vel*tar_ang_vel/(2.0 * ang_acc)));
 		
 	}else if(dir == RIGHT){
 		ang_acc = -ang_accel;			//Šp‰Á‘¬“x‚ðÝ’è
 		max_ang_vel = -max_ang_velocity;
 		max_degree = -deg;
-		while(-(float)(max_degree - (degree - local_degree))*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 * -ang_acc))/1000.0);
+		while(-(float)(max_degree - (degree - local_degree))*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 * -ang_acc)));
 	}
 
 	//BEEP();
