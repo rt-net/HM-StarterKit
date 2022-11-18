@@ -163,8 +163,8 @@ void int_cmt0(void)
 		V_l -= 1 * (I_tar_ang_vel - I_ang_vel) *(OMEGA_KI/100.0);
 		//Šp‘¬“x‚É‘Î‚·‚éD§Œä
 
-		V_r += 1 * (p_ang_vel - ang_vel) *(OMEGA_KD/100.0); //(0.4-0.3)*0.1 -> 0.01 
-		V_l -= 1 * (p_ang_vel - ang_vel) *(OMEGA_KD/100.0);
+		V_r -= 1 * (p_ang_vel - ang_vel) *(OMEGA_KD/100.0); //(0.4-0.3)*0.1 -> 0.01 
+		V_l += 1 * (p_ang_vel - ang_vel) *(OMEGA_KD/100.0);
 
 	}else if(run_mode == NON_CON_MODE){
 		//‰½‚à‚µ‚È‚¢
